@@ -1,0 +1,7 @@
+/build
+
+/app/build
+/app/snowflake_css.egg-info
+
+__pycache__
+*.py[co]
