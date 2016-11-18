@@ -8,11 +8,11 @@ It's licensed under the MIT license.
 ### Available components
 
 This repository contains multiple components you can use and a Python tool to
-compile them. They're written in SCSS under the hood.
-
-The following components are available:
+compile them. They're written in SCSS under the hood. The following components
+are available:
 
  * `base`: basic styling for every page
+ * `typography`: styling for documents and text
 
 ### Building
 
