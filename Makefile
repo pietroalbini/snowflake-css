@@ -26,7 +26,8 @@ APP_DIR = app
 COMPONENTS_DIR = components
 
 # Get a list of the compoennts
-COMPONENTS = $(patsubst $(COMPONENTS_DIR)/%,%,$(wildcard $(COMPONENTS_DIR)/*))
+ALL_COMPONENTS = $(patsubst $(COMPONENTS_DIR)/%,%,$(wildcard $(COMPONENTS_DIR)/*))
+COMPONENTS = $(filter-out base,$(ALL_COMPONENTS))
 
 
 .PHONY: build demo
@@ -41,14 +42,14 @@ $(BUILD_DIR)/env:
 	@$(BUILD_DIR)/env/bin/pip install -e $(APP_DIR)[demo]
 
 
-$(BUILD_DIR)/css/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(COMPONENTS))
+$(BUILD_DIR)/css/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS))
 	@mkdir -p $(dir $@)
-	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) -o $@ --minify --
+	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) -o $@ --minify -- $(COMPONENTS)
 
 
-$(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(COMPONENTS)) $(APP_DIR)/snowflake_css/demo_template.html
+$(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(ALL_COMPONENTS)) $(APP_DIR)/snowflake_css/demo_template.html
 	@mkdir -p $(dir $@)
-	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) --demo -o $@ --minify --
+	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) --demo -o $@ --minify -- $(COMPONENTS)
 
 
 .PHONY: clean

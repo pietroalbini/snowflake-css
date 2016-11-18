@@ -66,7 +66,7 @@ def build(*components, color=None, minify=False):
         if not path.exists():
             raise NameError("Component %s doesn't exist" % component)
 
-        to_build.append(component)
+        to_build.append(path)
 
     # Build the CSS files
     result = compile(*to_build, color=color)
