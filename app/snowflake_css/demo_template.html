@@ -25,10 +25,7 @@
         <meta charset="utf-8">
         <title>Snowflake demo</title>
         <style>{{ css }}</style>
-        <style>
-.wrapper{max-width: 50em;margin:auto}.demo{border:0.1em solid
-    #ccc;padding:0.5em 1em;border-radius:0.2em}
-        </style>
+        <style>.wrapper{max-width: 50em;margin:auto}.demo{border:0.1em solid #ccc;padding:0.5em 1em;border-radius:0.2em}</style>
     </head>
     <body>
         <div class="wrapper">
@@ -37,7 +34,15 @@
                 This page contains an example of the various Snowflake
                 components.
             </p>
+            <ul>
+                {% for demo in demos %}
+                <li>
+                    <a href="#{{ demo.name }}">Component "{{ demo.name }}"</a>
+                </li>
+                {% endfor %}
+            </ul>
             {% for demo in demos %}
+                <a name="{{ demo.name }}"></a>
                 <h2>Component "{{ demo.name }}"</h2>
                 <div class="demo">
                     {{ demo.src }}
