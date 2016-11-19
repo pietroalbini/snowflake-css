@@ -47,7 +47,7 @@ $(BUILD_DIR)/css/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COM
 	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) -o $@ --minify -- $(COMPONENTS)
 
 
-$(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(ALL_COMPONENTS)) $(APP_DIR)/snowflake_css/demo_template.html
+$(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(ALL_COMPONENTS)) $(wildcard $(APP_DIR)/snowflake_css/demo/*)
 	@mkdir -p $(dir $@)
 	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) --demo -o $@ --minify -- $(COMPONENTS)
 

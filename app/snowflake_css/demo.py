@@ -22,6 +22,7 @@ import pathlib
 
 import jinja2
 from htmlmin.minify import html_minify
+import rcssmin
 
 from . import compiler
 
@@ -40,6 +41,10 @@ def build(*components, color=None):
     components = list(components)
     base = pathlib.Path(__file__).parent
 
+    # Get the demo CSS
+    with (base / "demo" / "style.css").open() as f:
+        css_demo = rcssmin.cssmin(f.read())
+
     # Get the source CSS
     css = compiler.build(*components, color=color, minify=True)
 
@@ -53,7 +58,8 @@ def build(*components, color=None):
         with path.open() as f:
             demos.append({"name": component, "src": f.read()})
 
-    return render_template(base / "demo_template.html", {
+    return render_template(base / "demo" / "template.html", {
         "css": css,
+        "css_demo": css_demo,
         "demos": demos,
     })

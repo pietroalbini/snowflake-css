@@ -25,7 +25,7 @@
         <meta charset="utf-8">
         <title>Snowflake demo</title>
         <style>{{ css }}</style>
-        <style>.wrapper{max-width: 50em;margin:auto}.demo{border:0.1em solid #ccc;padding:0.5em 1em;border-radius:0.2em}</style>
+        <style>{{ css_demo }}</style>
     </head>
     <body>
         <div class="wrapper">
@@ -37,14 +37,18 @@
             <ul>
                 {% for demo in demos %}
                 <li>
-                    <a href="#{{ demo.name }}">Component "{{ demo.name }}"</a>
+                    <a href="#{{ demo.name }}">
+                        Component "{{ demo.name }}"
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
             {% for demo in demos %}
                 <a name="{{ demo.name }}"></a>
-                <h2>Component "{{ demo.name }}"</h2>
-                <div class="demo">
+                <h2 class="demo-title">
+                    Component "{{ demo.name }}"
+                </h2>
+                <div>
                     {{ demo.src }}
                 </div>
             {% endfor %}
