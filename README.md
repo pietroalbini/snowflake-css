@@ -13,6 +13,7 @@ are available:
 
  * `base`: basic styling for every page
  * `typography`: styling for documents and text
+ * `inline-list`: styling for inline lists
 
 ### Building
 
