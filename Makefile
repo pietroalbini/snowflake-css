@@ -18,20 +18,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# Executables
 PYTHON = python3
+GPG = gpg
+TWINE = twine
 EXECUTABLE = snowflake-css
 
+# Configuration
+NAME = snowflake-css
 BUILD_DIR = build
 APP_DIR = app
 COMPONENTS_DIR = components
+PACKAGES_DIR = $(BUILD_DIR)/packages
+
+# Uploading configuration
+RELEASES_SERVER = files@winter.net.pietroalbini.org
+RELEASES_DIR = public/releases/$(NAME)/$(shell $(PYTHON) $(APP_DIR)/setup.py --version)
 
 # Get a list of the compoennts
 ALL_COMPONENTS = $(patsubst $(COMPONENTS_DIR)/%,%,$(wildcard $(COMPONENTS_DIR)/*))
 COMPONENTS = $(filter-out base,$(ALL_COMPONENTS))
 
 
+#########################
+# CSS and demo building #
+#########################
+
 .PHONY: build demo
-build: $(BUILD_DIR)/css/snowflake.css
+
+build: $(BUILD_DIR)/snowflake.css
 demo: $(BUILD_DIR)/demo.html
 
 
@@ -42,7 +57,7 @@ $(BUILD_DIR)/env:
 	@$(BUILD_DIR)/env/bin/pip install -e $(APP_DIR)[demo]
 
 
-$(BUILD_DIR)/css/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS))
+$(BUILD_DIR)/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS))
 	@mkdir -p $(dir $@)
 	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) -o $@ --minify -- $(COMPONENTS)
 
@@ -51,6 +66,45 @@ $(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_
 	@mkdir -p $(dir $@)
 	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) --demo -o $@ --minify -- $(COMPONENTS)
 
+
+########################################
+# Python packages building and signing #
+########################################
+
+.PHONY: packages sign-packages upload
+
+packages: $(PACKAGES_DIR)/*.tar.gz $(PACKAGES_DIR)/*.whl
+sign-packages: $(addsuffix .asc,$(filter-out $(wildcard $(PACKAGES_DIR)/*.asc),$(wildcard $(PACKAGES_DIR)/*)))
+
+
+PACKAGES_FILES = $(shell find -L app \( -name "*.py" -o -name "*.html" -o -name "*.scss" \) -type f -print)
+
+
+$(PACKAGES_DIR)/*.tar.gz: $(PACKAGES_FILES)
+	@mkdir -p $(PACKAGES_DIR)
+	@cd $(APP_DIR) && $(PYTHON) setup.py sdist -d ../$(PACKAGES_DIR)
+	@rm -rf $(APP_DIR)/build $(APP_DIR)/*.egg-info
+
+
+$(PACKAGES_DIR)/*.whl: $(PACKAGES_FILES)
+	@mkdir -p $(PACKAGES_DIR)
+	@cd $(APP_DIR) && $(PYTHON) setup.py bdist_wheel -d ../$(PACKAGES_DIR)
+	@rm -rf $(APP_DIR)/build $(APP_DIR)/*.egg-info
+
+
+$(PACKAGES_DIR)/%.asc: $(PACKAGES_DIR)/%
+	@$(GPG) --detach --armor --sign $(PACKAGES_DIR)/$*
+
+
+upload: packages sign-packages
+	@ssh $(RELEASES_SERVER) -- mkdir -p $(RELEASES_DIR)
+	@scp $(PACKAGES_DIR)/* $(RELEASES_SERVER):$(RELEASES_DIR)
+	@$(TWINE) upload --config-file .pypirc -r upload --skip-existing $(PACKAGES_OUT)/*
+
+
+###########
+# Cleanup #
+###########
 
 .PHONY: clean
 clean:
