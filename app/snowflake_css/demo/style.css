@@ -19,11 +19,6 @@
  * IN THE SOFTWARE.
  */
 
-.wrapper {
-    max-width: 50em;
-    margin: 0 auto;
-}
-
 h2.demo-title {
     padding-bottom: 0.3em;
     border-bottom: 0.01em solid #eee;

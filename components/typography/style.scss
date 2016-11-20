@@ -61,6 +61,19 @@ code {
 
 pre {
     display: block;
+    margin: 1em 0;
     padding: 0.5em 1em;
     border-radius: 0.3em;
+
+    overflow-x: auto;
+
+    @media all and (max-width: $wrapper_size) {
+
+        .wrapper & {
+            border-radius: 0;
+            border-left: 0;
+            border-right: 0;
+            margin: 1em -1.1em;
+        }
+    }
 }

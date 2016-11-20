@@ -49,3 +49,10 @@ a {
         text-decoration: underline;
     }
 }
+
+
+.wrapper {
+    max-width: $wrapper_size;
+    margin: auto;
+    padding: 0 1em;
+}
