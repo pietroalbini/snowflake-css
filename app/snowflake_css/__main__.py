@@ -32,9 +32,9 @@ except ImportError:
 def usage(exit_code):
     """Print the usage"""
     print(
-        "Usage: snowflake-css [-h|--help] [-m|--minify] [-o OUTPUT|--output "
-        "OUTPUT] %s[-c COLOR|--color COLOR] [component [component ..]]" %
-        ("[--demo] " if DEMO_AVAILABLE else "")
+        "Usage: snowflake-css [-h|--help] [-m|--min|--minify] "
+        "[-o OUTPUT|--output OUTPUT] %s[-c COLOR|--color COLOR] "
+        "[component [component ..]]" % ("[--demo] " if DEMO_AVAILABLE else "")
     )
     exit(exit_code)
 
@@ -73,7 +73,7 @@ def parse_args(args):
         if arg in ("-h", "--help"):
             usage(0)
 
-        if arg in ("-m", "--minify"):
+        if arg in ("-m", "--min", "--minify"):
             minify = True
             continue
 
