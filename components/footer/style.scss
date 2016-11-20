@@ -19,8 +19,11 @@
  * IN THE SOFTWARE.
  */
 
-// Basic colors definition
-$color_black: #333;
-$color_light_gray: #eee;
-$color_gray: #888;
-$color_white: #fff;
+.footer {
+    color: $color_gray;
+    margin: 1.5em 0;
+
+    a {
+        color: darken($color_gray, 20%);
+    }
+}
