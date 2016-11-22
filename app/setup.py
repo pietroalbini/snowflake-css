@@ -50,7 +50,14 @@ setuptools.setup(
         ],
     },
 
+    package_data = {
+        "snowflake-css": [
+            "*.scss",
+            "*.html",
+        ]
+    },
     include_package_data = True,
+
     zip_safe = False,
 
     entry_points = {

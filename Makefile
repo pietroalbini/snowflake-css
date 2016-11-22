@@ -31,6 +31,10 @@ APP_DIR = app
 COMPONENTS_DIR = components
 PACKAGES_DIR = $(BUILD_DIR)/packages
 
+# Virtualenvs
+BUILD_ENV = $(BUILD_DIR)/env/build
+PACKAGING_ENV = $(BUILD_DIR)/env/packaging
+
 # Uploading configuration
 RELEASES_SERVER = files@winter.net.pietroalbini.org
 RELEASES_DIR = public/releases/$(NAME)/$(shell $(PYTHON) $(APP_DIR)/setup.py --version)
@@ -38,6 +42,13 @@ RELEASES_DIR = public/releases/$(NAME)/$(shell $(PYTHON) $(APP_DIR)/setup.py --v
 # Get a list of the compoennts
 ALL_COMPONENTS = $(patsubst $(COMPONENTS_DIR)/%,%,$(wildcard $(COMPONENTS_DIR)/*))
 COMPONENTS = $(filter-out base,$(ALL_COMPONENTS))
+
+
+$(BUILD_DIR)/env/%: requirements-%.txt
+	@rm -rf $@
+	@mkdir -p $@
+	@$(PYTHON) -m virtualenv $@
+	@$@/bin/pip install -r $<
 
 
 #########################
@@ -50,21 +61,14 @@ build: $(BUILD_DIR)/snowflake.css
 demo: $(BUILD_DIR)/demo.html
 
 
-$(BUILD_DIR)/env:
-	@rm -rf $(BUILD_DIR)/env
-	@mkdir -p $(BUILD_DIR)/env
-	@$(PYTHON) -m virtualenv $(BUILD_DIR)/env
-	@$(BUILD_DIR)/env/bin/pip install -e $(APP_DIR)[demo]
-
-
-$(BUILD_DIR)/snowflake.css: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS))
+$(BUILD_DIR)/snowflake.css: $(BUILD_ENV) globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS))
 	@mkdir -p $(dir $@)
-	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) -o $@ --minify -- $(COMPONENTS)
+	@$(BUILD_ENV)/bin/$(EXECUTABLE) -o $@ --minify -- $(COMPONENTS)
 
 
-$(BUILD_DIR)/demo.html: $(BUILD_DIR)/env globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(ALL_COMPONENTS)) $(wildcard $(APP_DIR)/snowflake_css/demo/*)
+$(BUILD_DIR)/demo.html: $(BUILD_ENV) globals.scss $(patsubst %,$(COMPONENTS_DIR)/%/style.scss,$(ALL_COMPONENTS)) $(patsubst %,$(COMPONENTS_DIR)/%/demo.html,$(ALL_COMPONENTS)) $(wildcard $(APP_DIR)/snowflake_css/demo/*)
 	@mkdir -p $(dir $@)
-	@$(BUILD_DIR)/env/bin/$(EXECUTABLE) --demo -o $@ --minify -- $(COMPONENTS)
+	@$(BUILD_ENV)/bin/$(EXECUTABLE) --demo -o $@ --minify -- $(COMPONENTS)
 
 
 ########################################
@@ -80,15 +84,15 @@ sign-packages: $(addsuffix .asc,$(filter-out $(wildcard $(PACKAGES_DIR)/*.asc),$
 PACKAGES_FILES = $(shell find -L app \( -name "*.py" -o -name "*.html" -o -name "*.scss" \) -type f -print)
 
 
-$(PACKAGES_DIR)/*.tar.gz: $(PACKAGES_FILES)
+$(PACKAGES_DIR)/*.tar.gz: $(PACKAGING_ENV) $(PACKAGES_FILES)
 	@mkdir -p $(PACKAGES_DIR)
-	@cd $(APP_DIR) && $(PYTHON) setup.py sdist -d ../$(PACKAGES_DIR)
+	@cd $(APP_DIR) && ../$(PACKAGING_ENV)/bin/python setup.py sdist -d ../$(PACKAGES_DIR)
 	@rm -rf $(APP_DIR)/build $(APP_DIR)/*.egg-info
 
 
-$(PACKAGES_DIR)/*.whl: $(PACKAGES_FILES)
+$(PACKAGES_DIR)/*.whl: $(PACKAGING_ENV) $(PACKAGES_FILES)
 	@mkdir -p $(PACKAGES_DIR)
-	@cd $(APP_DIR) && $(PYTHON) setup.py bdist_wheel -d ../$(PACKAGES_DIR)
+	@cd $(APP_DIR) && ../$(PACKAGING_ENV)/bin/python setup.py bdist_wheel -d ../$(PACKAGES_DIR)
 	@rm -rf $(APP_DIR)/build $(APP_DIR)/*.egg-info
 
 
