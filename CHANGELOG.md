@@ -4,7 +4,7 @@ This files contains what changed between Snowflake releases
 
 ### Snowflake 1.1.0
 
-_Features release, not yet released._
+_Features release, released on November 24th, 2016._
 
 * Add the new `button` component
 * Fix `<code>` inside `<pre>` styling (used by the Lektor markdown engine)

@@ -23,7 +23,7 @@ import setuptools
 
 setuptools.setup(
     name = "snowflake-css",
-    version = "1.0.1",
+    version = "1.1.0",
     url = "https://github.com/pietroalbini/snowflake-css",
 
     license = "GNU-GPL v3+",
