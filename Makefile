@@ -103,7 +103,7 @@ $(PACKAGES_DIR)/%.asc: $(PACKAGES_DIR)/%
 upload: packages sign-packages
 	@ssh $(RELEASES_SERVER) -- mkdir -p $(RELEASES_DIR)
 	@scp $(PACKAGES_DIR)/* $(RELEASES_SERVER):$(RELEASES_DIR)
-	@$(TWINE) upload --config-file .pypirc -r upload --skip-existing $(PACKAGES_OUT)/*
+	@$(TWINE) upload --config-file .pypirc -r upload --skip-existing $(PACKAGES_DIR)/*
 
 
 ###########
