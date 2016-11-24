@@ -6,6 +6,7 @@ This files contains what changed between Snowflake releases
 
 _Features release, not yet released._
 
+* Add the new `button` component
 * Fix `<code>` inside `<pre>` styling (used by the Lektor markdown engine)
 
 ### Snowflake 1.0.1

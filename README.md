@@ -15,6 +15,7 @@ are available:
  * `typography`: styling for documents and text
  * `inline-list`: styling for inline lists
  * `footer`: styling for footers
+ * `button`: styling for buttons
 
 ### Building
 

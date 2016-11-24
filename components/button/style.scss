@@ -19,12 +19,50 @@
  * IN THE SOFTWARE.
  */
 
-// Basic colors definition
-$color_black: #333;
-$color_light_gray: #eee;
-$color_gray: #888;
-$color_white: #fff;
+.button {
+    user-select: none;
+    display: inline-block;
 
-$wrapper_size: 52em;
+    margin: 0.3em;
+    padding: 0.4em 0.8em;
 
-$font_family: sans-serif;
+    border: 0;
+    border-radius: 0.2em;
+
+    font-size: 1em;
+    font-family: $font_family;
+    line-height: 1.4em;
+
+    background: $color_main;
+    color: $color_white;
+
+    cursor: pointer;
+    transition: background 0.2s ease-out;
+    box-shadow: 0 0.2em 0.2em rgba(0, 0, 0, 0.2);
+
+    // Fix for Firefox
+    &::-moz-focus-inner {
+        padding: 0;
+    }
+
+    &:hover {
+        background: lighten($color_main, 10%);
+        text-decoration: none;
+    }
+
+    &.button--big {
+        font-size: 1.4em;
+    }
+
+    &.button--large {
+        font-size: 1.2em;
+    }
+
+    &.button--normal {
+        font-size: 1em;
+    }
+
+    &.button--small {
+        font-size: 0.8em;
+    }
+}
