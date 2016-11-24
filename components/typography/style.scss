@@ -67,6 +67,15 @@ pre {
 
     overflow-x: auto;
 
+    // The markdown converter used by Lektor nestes <code> within <pre> for
+    // code blocks -- this fixes its styling
+    & > code {
+        font-size: 1em;
+        padding: 0;
+        border-radius: 0;
+        border: 0;
+    }
+
     @media all and (max-width: $wrapper_size) {
 
         .wrapper & {

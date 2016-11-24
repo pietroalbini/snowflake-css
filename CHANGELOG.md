@@ -2,6 +2,12 @@
 
 This files contains what changed between Snowflake releases
 
+### Snowflake 1.1.0
+
+_Features release, not yet released._
+
+* Fix `<code>` inside `<pre>` styling (used by the Lektor markdown engine)
+
 ### Snowflake 1.0.1
 
 _Bugfix release, released on November 22th, 2016._
