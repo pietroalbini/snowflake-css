@@ -2,6 +2,10 @@
 
 This files contains what changed between Snowflake releases
 
+### Next release
+
+* Improve the styling for headers
+
 ### Snowflake 1.1.0
 
 _Features release, released on November 24th, 2016._
