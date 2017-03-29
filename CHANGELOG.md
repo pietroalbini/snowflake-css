@@ -4,16 +4,19 @@ This files contains what changed between Snowflake releases
 
 ### Next release
 
-* Restyle code blocks to be cleaner
+* Restyle `<code>` and `<pre>` to be cleaner (component: **typography**)
 
     * Remove the grey background in the boxes
     * Add a subtle box shadow to the code blocks
 
-* Improve the styling for headers
+* Improve the styling for headings (component: **typography**)
+
+    * Add an underline for `<h1>` and `<h2>`
+    * Use a darken color for the headings' content
 
 ### Snowflake 1.1.0
 
-_Features release, released on November 24th, 2016._
+_Feature release, released on November 24th, 2016._
 
 * Add the new `button` component
 * Fix `<code>` inside `<pre>` styling (used by the Lektor markdown engine)
