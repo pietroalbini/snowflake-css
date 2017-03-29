@@ -16,6 +16,7 @@ are available:
  * `inline-list`: styling for inline lists
  * `footer`: styling for footers
  * `button`: styling for buttons
+ * `pygments-theme`: theme for Pygments code highlights
 
 ### Building
 

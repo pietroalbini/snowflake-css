@@ -4,6 +4,7 @@ This files contains what changed between Snowflake releases
 
 ### Next release
 
+* Add the new `pygments-theme` component
 * Restyle `<code>` and `<pre>` to be cleaner (component: **typography**)
 
     * Remove the grey background in the boxes

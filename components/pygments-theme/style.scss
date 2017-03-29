@@ -1,4 +1,4 @@
-/* Copyright (c) 2016 Pietro Albini <pietro@pietroalbini.org>
+/* Copyright (c) 2017 Pietro Albini <pietro@pietroalbini.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -19,15 +19,26 @@
  * IN THE SOFTWARE.
  */
 
-// Basic colors definition
-$color_dark_black: #000;
-$color_black: #333;
-$color_light_gray: #eee;
-$color_gray: #888;
-$color_white: #fff;
-$color_green: #3c3;
-$color_purple: #80f;
+.highlight {
 
-$wrapper_size: 52em;
+    // Keywords
+    .k, .kc, .kd, .kn, .kp, .kr, .kt, .nt, .ow {
+        color: $color_main;
+        font-weight: 700;
+    }
 
-$font_family: sans-serif;
+    // Comments
+    .c, .c1, .cm, .cp, .cl, .cs, .sd, .gp {
+        color: $color_gray;
+    }
+
+    // Strings
+    .s, .sb, .hightlight .sc, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss {
+        color: $color_green;
+    }
+
+    // Numbers
+    .m, .mb, .mf, .mh, .mi, .mo, .il {
+        color: $color_purple;
+    }
+}
