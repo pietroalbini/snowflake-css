@@ -4,6 +4,11 @@ This files contains what changed between Snowflake releases
 
 ### Next release
 
+* Restyle code blocks to be cleaner
+
+    * Remove the grey background in the boxes
+    * Add a subtle box shadow to the code blocks
+
 * Improve the styling for headers
 
 ### Snowflake 1.1.0
