@@ -2,7 +2,9 @@
 
 This files contains what changed between Snowflake releases
 
-### Next release
+### Snowflake 1.2.0
+
+_Feature release, released on March 30th, 2017._
 
 * Add the new `pygments-theme` component
 * Restyle `<code>` and `<pre>` to be cleaner (component: **typography**)
