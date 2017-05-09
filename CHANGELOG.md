@@ -2,6 +2,10 @@
 
 This files contains what changed between Snowflake releases
 
+### Next release
+
+* Add the new `navbar` component
+
 ### Snowflake 1.2.0
 
 _Feature release, released on March 30th, 2017._
