@@ -29,57 +29,63 @@
     </head>
     <body>
         <header class="navbar">
-            <div class="wrapper">
-                <ul class="left">
-                    <li>Snowflake CSS</li>
-                    <li><a href="#" class="active">Demo</a></li>
-                    <li><a href="https://github.com/pietroalbini/snowflake-css">
-                        Source code
-                    </a></li>
-                </ul>
-                <ul class="right">
-                    <li><a href="https://www.pietroalbini.org">Author</a></li>
-                </ul>
-            </div>
-        </header>
-        <div class="wrapper">
-            <h1>Snowflake demo</h1>
-            <p>
-                This page contains an example of the various Snowflake
-                components.
-            </p>
-            <ul>
-                {% for demo in demos %}
-                <li>
-                    <a href="#{{ demo.name }}">
-                        Component "{{ demo.name }}"
-                    </a>
-                </li>
-                {% endfor %}
+            <ul class="left">
+                <li>Snowflake CSS</li>
+                <li><a href="#" class="active">Demo</a></li>
+                <li><a href="https://github.com/pietroalbini/snowflake-css">
+                    Source code
+                </a></li>
             </ul>
-            {% for demo in demos %}
-                <a name="{{ demo.name }}"></a>
-                <h2 class="demo-title">
-                    Component "{{ demo.name }}"
-                </h2>
-                <div>
-                    {{ demo.src }}
-                </div>
-            {% endfor %}
-
-            <footer class="footer">
-                <ul class="inline-list">
+            <ul class="right">
+                <li><a href="https://www.pietroalbini.org">Author</a></li>
+            </ul>
+        </header>
+        <div class="sidebar-container">
+            <div class="sidebar">
+                <ul class="nav">
+                    {% for demo in demos %}
                     <li>
-                        Demo for Snowflake by
-                        <a href="https://www.pietroalbini.org">Pietro Albini</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/pietroalbini/snowflake-css">
-                            Source code
+                        <a href="#{{ demo.name }}">
+                            Component "{{ demo.name }}"
                         </a>
                     </li>
+                    {% endfor %}
                 </ul>
-            </footer>
+            </div>
+            <div class="content">
+                <div class="wrapper">
+                    <h1>Snowflake demo</h1>
+                    <p>
+                        This page contains an example of the various Snowflake
+                        components.
+                    </p>
+                    {% for demo in demos %}
+                        <a name="{{ demo.name }}"></a>
+                        <h2 class="demo-title">
+                            Component "{{ demo.name }}"
+                        </h2>
+                        <div>
+                            {{ demo.src }}
+                        </div>
+                    {% endfor %}
+
+                    <footer class="footer">
+                        <ul class="inline-list">
+                            <li>
+                                Demo for Snowflake by
+                                <a href="https://www.pietroalbini.org">
+                                    Pietro Albini
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/pietroalbini/snowflake-css">
+                                    Source code
+                                </a>
+                            </li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>
