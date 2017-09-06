@@ -24,7 +24,7 @@ from scss.compiler import compile_string as scss_compile
 import rcssmin
 
 
-DEFAULT_COLOR = "#2060e1"
+DEFAULT_COLOR = "#2266bb"
 
 
 def minify(input):
