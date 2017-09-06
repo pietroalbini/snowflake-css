@@ -47,7 +47,7 @@ COMPONENTS = $(filter-out base,$(ALL_COMPONENTS))
 $(BUILD_DIR)/env/%: requirements-%.txt
 	@rm -rf $@
 	@mkdir -p $@
-	@$(PYTHON) -m virtualenv $@
+	@$(PYTHON) -m virtualenv -p $(PYTHON) $@
 	@$@/bin/pip install -r $<
 
 
