@@ -82,6 +82,12 @@
         padding: 0;
     }
 
+    &.sticky {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+    }
+
     @media all and (max-width: $wrapper_size) {
 
         ul {
