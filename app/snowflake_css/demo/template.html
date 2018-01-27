@@ -41,12 +41,17 @@
             </ul>
         </header>
         <div class="sidebar-container">
+            <label for="toggle-sidebar">Contents</label>
+            <input type="checkbox" id="toggle-sidebar">
+
             <div class="sidebar">
                 <ul class="nav">
+                    <li><a href="#">Go to the top</a></li>
+                    <li class="section">Components</li>
                     {% for demo in demos %}
                     <li>
                         <a href="#{{ demo.name }}">
-                            Component "{{ demo.name }}"
+                            {{ demo.name }}
                         </a>
                     </li>
                     {% endfor %}

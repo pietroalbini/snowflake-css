@@ -5,6 +5,7 @@ This files contains what changed between Snowflake releases
 ### Next release
 
 * Add the new `navbar` component
+* Add the new `sidebar` component
 
 ### Snowflake 1.2.0
 

@@ -31,6 +31,7 @@
 
         background: $color_light_gray;
         width: 20em;
+        padding: 1px;  /* Force margins */
 
         .nav {
             margin: 0.5em 0;
@@ -40,6 +41,17 @@
                 margin: 0;
                 display: block;
                 list-style: none;
+
+                &.section {
+                    padding: 0.8em 0.8em 0.3em 0.8em;
+                    color: $color_gray;
+
+                    text-transform: uppercase;
+
+                    &:hover {
+                        background: transparent;
+                    }
+                }
 
                 a {
                     display: block;
@@ -60,6 +72,38 @@
 
     .content {
         flex: 1;
+    }
+
+    & > label {
+        display: none;
+    }
+
+    & > input[type=checkbox] {
+        display: none;
+    }
+
+    @media all and (max-width: calc($wrapper_size + 15em)) {
+        display: block;
+
+        & > label {
+            display: block;
+            cursor: pointer;
+
+            color: $color_main;
+            text-align: center;
+
+            border-bottom: 0.1em solid $color_light_gray;
+            padding: 0.5em;
+        }
+
+        & > input[type=checkbox] + .sidebar {
+            display: none;
+        }
+
+        & > input[type=checkbox]:checked + .sidebar {
+            display: block;
+            width: 100%;
+        }
     }
 }
 
