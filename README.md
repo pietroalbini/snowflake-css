@@ -17,6 +17,7 @@ are available:
 * `inline-list`: styling for inline lists
 * `navbar`: a simple responsive navbar
 * `pygments-theme`: theme for Pygments code highlights
+* `sidebar`: a simple sidebar, toggleable on mobile
 * `typography`: styling for documents and text
 
 ## Building
