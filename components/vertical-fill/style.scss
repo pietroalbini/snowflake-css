@@ -1,0 +1,18 @@
+.vertical-fill {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        flex: 0;
+    }
+
+    & > *:last-child {
+        flex: 1;
+    }
+}
+
+
+/* Special case for `body` */
+body.vertical-fill {
+    min-height: 100vh;
+}

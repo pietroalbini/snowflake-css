@@ -19,6 +19,7 @@ are available:
 * `pygments-theme`: theme for Pygments code highlights
 * `sidebar`: a simple sidebar, toggleable on mobile
 * `typography`: styling for documents and text
+* `vertical-fill`: fill all the availble vertical space
 
 ## Building
 
