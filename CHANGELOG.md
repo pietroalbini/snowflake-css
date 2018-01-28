@@ -6,6 +6,7 @@ This files contains what changed between Snowflake releases
 
 * Add the new `navbar` component
 * Add the new `sidebar` component
+* Add support for the `<hr>` tag in the `typography` component
 
 ### Snowflake 1.2.0
 

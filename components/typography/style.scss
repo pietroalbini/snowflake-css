@@ -93,3 +93,10 @@ pre {
         }
     }
 }
+
+
+hr {
+    border: 0;
+    border-bottom: 0.1em solid $color_light_gray;
+    margin: 2.5em 25%;
+}
