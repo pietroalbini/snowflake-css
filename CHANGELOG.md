@@ -2,12 +2,14 @@
 
 This files contains what changed between Snowflake releases
 
-### Next release
+## Snowflake 1.3.0
+
+_Feature release, released on January 28th, 2017._
 
 * Add the new `navbar` component
 * Add the new `sidebar` component
-* Add the new `vertical-fill` component
-* Add support for the `<hr>` tag in the `typography` component
+* Add the new `vertical-fill` componen componentt
+* Add support for the `<hr>` tag (component: **typography**)
 
 ### Snowflake 1.2.0
 
