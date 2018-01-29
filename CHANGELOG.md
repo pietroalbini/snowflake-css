@@ -2,7 +2,13 @@
 
 This files contains what changed between Snowflake releases
 
-## Snowflake 1.3.0
+### Snowflake 1.3.1
+
+_Bugfix release, released on January 29th, 2017._
+
+* Fix responsiveness on Chrome (component: **sidebar**)
+
+### Snowflake 1.3.0
 
 _Feature release, released on January 28th, 2017._
 
