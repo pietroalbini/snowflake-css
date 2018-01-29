@@ -82,7 +82,7 @@
         display: none;
     }
 
-    @media all and (max-width: calc($wrapper_size + 15em)) {
+    @media all and (max-width: 67em) {
         display: block;
 
         & > label {
