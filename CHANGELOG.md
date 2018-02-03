@@ -2,6 +2,10 @@
 
 This files contains what changed between Snowflake releases
 
+### Next release
+
+* Allow colors to be arbitrary values (useful for replacing them at runtime)
+
 ### Snowflake 1.3.1
 
 _Bugfix release, released on January 29th, 2017._

@@ -37,7 +37,7 @@
     color: $color_white;
 
     cursor: pointer;
-    transition: background 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
     box-shadow: 0 0.2em 0.2em rgba(0, 0, 0, 0.2);
 
     // Fix for Firefox
@@ -46,7 +46,7 @@
     }
 
     &:hover {
-        background: lighten($color_main, 10%);
+        opacity: 0.9;
         text-decoration: none;
     }
 
